@@ -1,0 +1,33 @@
+
+##Insert dos alunos
+db.Alunos.insert({
+               "name": "Hernani Prates Costa Dias",
+               "data_nascimento":ISODate("1988-20-04T00:00:00Z"),
+               "disciplina":"NoSQL",
+               "nota":0 })
+
+db.Alunos.insert({
+               "name": "Cristiano Bento",
+               "data_nascimento":ISODate("1979-15-10T00:00:00Z"),
+               "disciplina":"NoSQL",
+               "nota":0 })
+
+db.Alunos.insert({
+               "name": "Marcelo",
+               "data_nascimento":ISODate("1980-14-09T00:00:00Z"),
+               "disciplina":"NoSQL",
+               "nota":0 })
+
+#Menor aluno
+db.Alunos.find().sort({data_nascimento: 1}).limit(1)
+
+#atualiza nota para 5
+
+db.Alunos.update({"name":"Hernani Prates Costa Dias"}, {$set:{nota:5}})
+
+
+#apaga aluno
+
+db.Alunos.remove({"name":/Cristiano/,})
+
+
