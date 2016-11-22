@@ -1,0 +1,66 @@
+// Letra A
+
+var map = function() { 
+              emit(this.text.substr(this.text.length-2,this.text.length),1); 
+}
+
+
+var reduce = function(key,value){
+return Array.sum(value);
+}
+
+
+db.Vocabulary.mapReduce(map,reduce,{query:{text: {$in: [/ar$/,/er$/, /ir$/, /or$/, /ur$/] }}, out:"resultado"})
+
+
+//> db.resultado.find()
+//{ "_id" : "ar", "value" : 2950 }
+//{ "_id" : "er", "value" : 2342 }
+//{ "_id" : "ir", "value" : 554 }
+//{ "_id" : "or", "value" : 1168 }
+//{ "_id" : "ur", "value" : 288 }
+
+
+// Letra B
+
+
+var map = function() {  
+    var text = this.text;
+    if (text) { 
+        for (var i = 0; i < text.length ; i++) {
+               emit(text[i], 1);
+            
+        }
+    }
+}
+
+var reduce = function(key,value){
+return Array.sum(value);
+}
+
+
+db.Vocabulary.mapReduce(map,reduce,{ out:"resultado"})
+
+
+//{ "_id" : "8", "value" : 16111 }
+//{ "_id" : "9", "value" : 17718 }
+//{ "_id" : ":", "value" : 130977 }
+//{ "_id" : ";", "value" : 701 }
+//{ "_id" : "<", "value" : 57 }
+//{ "_id" : "=", "value" : 155 }
+//{ "_id" : ">", "value" : 76 }
+//{ "_id" : "?", "value" : 13074 }
+//{ "_id" : "@", "value" : 90009 }
+//{ "_id" : "[", "value" : 1009 }
+//{ "_id" : "\\", "value" : 70 }
+//{ "_id" : "]", "value" : 1225 }
+//{ "_id" : "^", "value" : 21 }
+//{ "_id" : "_", "value" : 25413 }
+//{ "_id" : "`", "value" : 45 }
+//{ "_id" : "a", "value" : 288288 }
+//{ "_id" : "b", "value" : 64116 }
+//{ "_id" : "c", "value" : 174545 }
+//{ "_id" : "d", "value" : 91114 }
+//{ "_id" : "e", "value" : 186273 }
+
+
