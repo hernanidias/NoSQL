@@ -1,0 +1,19 @@
+
+//Exercicio Aula 4
+
+db.Vocabulary.find({"text":"feliz"}).explain({"executionStats":1})
+
+
+A) total de documentos escaneados: 291214
+B) tempo gasto pela consulta: 113
+
+
+C) db.Vocabulary.createIndex({"text":1})
+
+db.Vocabulary.find({"text":"feliz"}).explain({"executionStats":1})
+
+D) total de documentos escaneados: 1
+E) tempo gasto pela consulta: 8
+
+
+
