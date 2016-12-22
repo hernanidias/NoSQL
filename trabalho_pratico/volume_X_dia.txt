@@ -1,0 +1,18 @@
+var cursor = db.collectionTwitter.find({"Created":/2016/,});
+
+while (cursor.hasNext()) {
+  var currentDocument = cursor.next();
+
+  var data_aux = currentDocument['Created'].substr(0,10);
+  currentDocument['data'] = data_aux;
+
+    db.collectionTwitter.update({_id: currentDocument._id} ,{$set: {"data": currentDocument['data'] } } )
+
+  }
+  
+  
+ db.collectionTwitter.aggregate([{$match:{"Created":/2016/}} , {$group: { "_id":"$data", "total":{$sum:1} } }  ])
+
+ 
+{ "_id" : "2016-12-15", "total" : 10472 }
+{ "_id" : "2016-12-14", "total" : 12756 }

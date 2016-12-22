@@ -1,0 +1,23 @@
+var cursor = db.collectionTwitter.find({"Created":/2016/,});
+
+while (cursor.hasNext()) {
+  var currentDocument = cursor.next();
+
+  var data_aux = currentDocument['Created'].substr(0,13);
+  currentDocument['hora'] = data_aux;
+
+    db.collectionTwitter.update({_id: currentDocument._id} ,{$set: {"hora": currentDocument['hora'] } } )
+
+  }
+  
+
+db.collectionTwitter.aggregate([{$match:{"Created":/2016/}} , {$group: { "_id":"$hora", "total":{$sum:1} } }  ])
+
+
+{ "_id" : "2016-12-15 20", "total" : 2510 }
+{ "_id" : "2016-12-15 21", "total" : 5162 }
+{ "_id" : "2016-12-15 00", "total" : 2651 }
+{ "_id" : "2016-12-15 01", "total" : 149 }
+{ "_id" : "2016-12-14 21", "total" : 1928 }
+{ "_id" : "2016-12-14 22", "total" : 5511 }
+{ "_id" : "2016-12-14 23", "total" : 5317 }
